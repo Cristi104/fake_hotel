@@ -1,20 +1,17 @@
-CREATE DATABASE hotel CHARACTER SET=utf8mb4;
-
-CREATE USER 'NUME_USER'@'localhost' IDENTIFIED BY 'PAROLA_USER';
-GRANT ALL ON hotel.* TO 'NUME_USER'@'localhost';
-
-CREATE USER 'NUME_USER'@'127.0.0.1' IDENTIFIED BY 'PAROLA_USER';
-GRANT ALL ON hotel.* TO 'NUME_USER'@'127.0.0.1';
-
-USE hotel;
+CREATE TABLE user_types (
+    type_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE
+);
 
 CREATE TABLE users (
     user_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_type INTEGER NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     phone VARCHAR(10) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    FOREIGN KEY(user_type) REFERENCES user_types(type_id) ON DELETE RESTRICT
 );
 
 CREATE TABLE room_types (
@@ -44,5 +41,10 @@ CREATE TABLE migrations (
     name VARCHAR(100) NOT NULL UNIQUE,
     date DATE DEFAULT CURRENT_TIMESTAMP
 );
+START TRANSACTION;
+
+INSERT INTO user_types(name) VALUES('admin');
+INSERT INTO user_types(name) VALUES('customer');
 
 INSERT INTO migrations(name) VALUES('create_db-1.sql');
+COMMIT;
