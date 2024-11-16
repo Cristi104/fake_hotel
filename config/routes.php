@@ -2,6 +2,8 @@
 $routes = [
     "fake_hotel/users/index" => ["UserController", "index"],
     "fake_hotel/rooms/index" => ["RoomController", "index"],
+    "fake_hotel/bookings/index" => ["BookingController", "index"],
+    "fake_hotel/roomTypes/index" => ["RoomTypeController", "index"],
 ];
 
 class Router {
