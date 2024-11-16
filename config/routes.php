@@ -1,6 +1,7 @@
 <?php
 $routes = [
     "fake_hotel/users/index" => ["UserController", "index"],
+    "fake_hotel/rooms/index" => ["RoomController", "index"],
 ];
 
 class Router {
