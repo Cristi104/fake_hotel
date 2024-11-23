@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>All Users</h1>
+<a href="insert">Add</a>
 <table>
     <tr>
         <th>ID</th>
@@ -17,6 +18,7 @@
         <th>phone</th>
         <th>email</th>
         <th>password</th>
+        <th>Actions</th>
     </tr>
     <?php foreach ($users as $user) : ?>
         <tr>
@@ -27,6 +29,10 @@
             <td><?= $user["phone"] ?></td>
             <td><?= $user["email"] ?></td>
             <td><?= $user["password"] ?></td>
+            <td>
+                <a href="update?id=<?= $user["user_id"] ?>">Update</a>
+                <a href="delete?id=<?= $user["user_id"] ?>">Delete</a>
+            </td>
         </tr>
     <?php endforeach; ?>
     
