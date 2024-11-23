@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>All Bookings</h1>
+<a href="insert">Add</a>
 <table>
     <tr>
         <th>booking_id</th>
@@ -15,6 +16,7 @@
         <th>user_id</th>
         <th>start_date</th>
         <th>end_date</th>
+        <th>Actions</th>
     </tr>
     <?php foreach ($bookings as $booking) : ?>
         <tr>
@@ -23,6 +25,10 @@
             <td><?= $booking["user_id"] ?></td>
             <td><?= $booking["start_date"] ?></td>
             <td><?= $booking["end_date"] ?></td>
+            <td>
+                <a href="update?id=<?= $booking["booking_id"] ?>">Update</a>
+                <a href="delete?id=<?= $booking["booking_id"] ?>">Delete</a>
+            </td>
         </tr>
     <?php endforeach; ?>
     
