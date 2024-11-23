@@ -6,6 +6,7 @@ class UserController{
         $users = User::getAllUsers();
         require_once "app/views/User/index.php";
     }
+
     public static function insert(){
         if(array_key_exists('Add', $_POST)){
             $user = array("user_id"=>-1);
@@ -22,6 +23,7 @@ class UserController{
         }
         require_once "app/views/User/insert.php";
     }
+
     public static function update(){
         $id = $_GET['id'];
         $user = User::getUser($id);
@@ -39,6 +41,7 @@ class UserController{
         }
         require_once "app/views/User/update.php";
     }
+    
     public static function delete(){
         $id = $_GET['id'];
         $user = User::getUser($id);
