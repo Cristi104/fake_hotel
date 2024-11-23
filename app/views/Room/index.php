@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>All Rooms</h1>
-<a href="insert">Add</a>
+<a href="/fake_hotel" class="button">Home</a>
+<a href="insert" class="button">Add</a>
 <table>
     <tr>
         <th>room_number</th>
@@ -20,8 +21,8 @@
             <td><?= $room["room_number"] ?></td>
             <td><?= $room["room_type"] ?></td>
             <td>
-                <a href="update?number=<?= $room["room_number"] ?>">Update</a>
-                <a href="delete?number=<?= $room["room_number"] ?>">Delete</a>
+                <a href="update?number=<?= $room["room_number"] ?>" class="button">Update</a>
+                <a href="delete?number=<?= $room["room_number"] ?>" class="button">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

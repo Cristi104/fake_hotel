@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>All Users</h1>
-<a href="insert">Add</a>
+<a href="/fake_hotel" class="button">Home</a>
+<a href="insert" class="button">Add</a>
 <table>
     <tr>
         <th>ID</th>
@@ -30,8 +31,8 @@
             <td><?= $user["email"] ?></td>
             <td><?= $user["password"] ?></td>
             <td>
-                <a href="update?id=<?= $user["user_id"] ?>">Update</a>
-                <a href="delete?id=<?= $user["user_id"] ?>">Delete</a>
+                <a href="update?id=<?= $user["user_id"] ?>" class="button">Update</a>
+                <a href="delete?id=<?= $user["user_id"] ?>" class="button">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

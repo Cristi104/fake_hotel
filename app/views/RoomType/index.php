@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>All Room Types</h1>
-<a href="insert">Add type</a>
+<a href="/fake_hotel" class="button">Home</a>
+<a href="insert" class="button">Add type</a>
 <table>
     <tr>
         <th>type_id</th>
@@ -22,8 +23,8 @@
             <td><?= $type["max_guests"] ?></td>
             <td><?= $type["price"] ?></td>
             <td>
-                <a href="update?id=<?= $type["type_id"] ?>">Update</a>
-                <a href="delete?id=<?= $type["type_id"] ?>">Delete</a>
+                <a href="update?id=<?= $type["type_id"] ?>" class="button">Update</a>
+                <a href="delete?id=<?= $type["type_id"] ?>" class="button">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

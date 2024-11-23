@@ -20,8 +20,7 @@ $routes = [
     "fake_hotel/roomTypes/insert" => ["RoomTypeController", "insert"],
     "fake_hotel/roomTypes/update" => ["RoomTypeController", "update"],
     "fake_hotel/roomTypes/delete" => ["RoomTypeController", "delete"],
-    // other
-    "fake_hotel/test" => ["RoomTypeController", "index"],
+    //other
 ];
 
 class Router {
@@ -36,7 +35,11 @@ class Router {
         $cutURL = explode('?',$this->uri)[0];
         if($cutURL == "fake_hotel/test"){
             require_once "app/test.php";
-            return 0;
+            return;
+        }
+        if($cutURL == "fake_hotel"){
+            require_once "public/index.php";
+            return;
         }
         if(array_key_exists($cutURL, $routes)){
             [$controller, $method] = $routes[$cutURL];

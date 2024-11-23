@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>All Bookings</h1>
-<a href="insert">Add</a>
+<a href="/fake_hotel" class="button">Home</a>
+<a href="insert" class="button">Add</a>
 <table>
     <tr>
         <th>booking_id</th>
@@ -26,8 +27,8 @@
             <td><?= $booking["start_date"] ?></td>
             <td><?= $booking["end_date"] ?></td>
             <td>
-                <a href="update?id=<?= $booking["booking_id"] ?>">Update</a>
-                <a href="delete?id=<?= $booking["booking_id"] ?>">Delete</a>
+                <a href="update?id=<?= $booking["booking_id"] ?>" class="button">Update</a>
+                <a href="delete?id=<?= $booking["booking_id"] ?>" class="button">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>
