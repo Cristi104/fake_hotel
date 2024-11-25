@@ -41,6 +41,10 @@ class Router {
             require_once "public/index.php";
             return;
         }
+        if($cutURL == "fake_hotel/login"){
+            require_once "public/login.php";
+            return;
+        }
         if(array_key_exists($cutURL, $routes)){
             [$controller, $method] = $routes[$cutURL];
 

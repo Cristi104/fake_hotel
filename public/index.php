@@ -9,10 +9,16 @@
 </head>
 <body>
 <h1>Welcome</h1>
-<a href="users/index" class="button">Users</a>
-<a href="rooms/index" class="button">Rooms</a>
-<a href="roomTypes/index" class="button">Room Types</a>
-<a href="bookings/index" class="button">Bookings</a>
-    
+<?php
+    if(array_key_exists("user", $_SESSION)){
+        echo "<a href=\"users/index\" class=\"button\">Users</a>";
+        echo "<a href=\"rooms/index\" class=\"button\">Rooms</a>";
+        echo "<a href=\"roomTypes/index\" class=\"button\">Room Types</a>";
+        echo "<a href=\"bookings/index\" class=\"button\">Bookings</a>";
+    } else {
+        echo "<a href=\"login\" class=\"button\">Login</a>";
+        echo "<p>Please login.(email: test@example.com password: parola)</p>";
+    };
+?>  
 </body>
 </html>
