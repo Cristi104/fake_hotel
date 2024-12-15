@@ -15,6 +15,7 @@
         echo "<a href=\"rooms/index\" class=\"button\">Rooms</a>";
         echo "<a href=\"roomTypes/index\" class=\"button\">Room Types</a>";
         echo "<a href=\"bookings/index\" class=\"button\">Bookings</a>";
+        echo "<a href=\"logout\" class=\"button\">Logout</a>";
     } else {
         echo "<a href=\"login\" class=\"button\">Login</a>";
         echo "<p>Please login.(email: test@example.com password: parola)</p>";

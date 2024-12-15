@@ -21,6 +21,9 @@ $routes = [
     "fake_hotel/roomTypes/update" => ["RoomTypeController", "update"],
     "fake_hotel/roomTypes/delete" => ["RoomTypeController", "delete"],
     //other
+    "fake_hotel" => ["AuthController", "homePage"],
+    "fake_hotel/login" => ["AuthController", "login"],
+    "fake_hotel/logout" => ["AuthController", "logout"],
 ];
 
 class Router {
@@ -33,18 +36,6 @@ class Router {
     public function direct() {
         global $routes;
         $cutURL = explode('?',$this->uri)[0];
-        if($cutURL == "fake_hotel/test"){
-            require_once "app/test.php";
-            return;
-        }
-        if($cutURL == "fake_hotel"){
-            require_once "public/index.php";
-            return;
-        }
-        if($cutURL == "fake_hotel/login"){
-            require_once "public/login.php";
-            return;
-        }
         if(array_key_exists($cutURL, $routes)){
             [$controller, $method] = $routes[$cutURL];
 
