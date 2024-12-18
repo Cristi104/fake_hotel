@@ -1,10 +1,12 @@
 <?php
 require_once "app/models/User.php";
+require_once "config/config.php";
 
 class AuthController{
     public static function login(){
+        global $homePath;
         if(isset($_SESSION["user"])){
-            header("Location: /fake_hotel");
+            header("Location: /". $homePath);
             return;
         }
         if(!isset($_GET["login"])){
@@ -19,7 +21,7 @@ class AuthController{
         }else{
             if(password_verify($_GET["password"], $user['password'])){
                 $_SESSION["user"] = $user;
-                header("Location: /fake_hotel");
+                header("Location: /". $homePath);
                 return;
             }
             $_SESSION["login_error"] = "Incorect email or password";
@@ -29,9 +31,10 @@ class AuthController{
     }
 
     public static function logout(){
+        global $homePath;
         session_start();
         session_destroy();
-        header("Location: /fake_hotel");
+        header("Location: /". $homePath);
     }
 
     public static function homePage(){

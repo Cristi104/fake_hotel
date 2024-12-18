@@ -1,29 +1,31 @@
 <?php
+require_once "config.php";
+
 $routes = [
     // users
-    "fake_hotel/users/index" => ["UserController", "index"],
-    "fake_hotel/users/insert" => ["UserController", "insert"],
-    "fake_hotel/users/update" => ["UserController", "update"],
-    "fake_hotel/users/delete" => ["UserController", "delete"],
+    $homePath . "/users/index" => ["UserController", "index"],
+    $homePath . "/users/insert" => ["UserController", "insert"],
+    $homePath . "/users/update" => ["UserController", "update"],
+    $homePath . "/users/delete" => ["UserController", "delete"],
     // rooms
-    "fake_hotel/rooms/index" => ["RoomController", "index"],
-    "fake_hotel/rooms/insert" => ["RoomController", "insert"],
-    "fake_hotel/rooms/update" => ["RoomController", "update"],
-    "fake_hotel/rooms/delete" => ["RoomController", "delete"],
+    $homePath . "/rooms/index" => ["RoomController", "index"],
+    $homePath . "/rooms/insert" => ["RoomController", "insert"],
+    $homePath . "/rooms/update" => ["RoomController", "update"],
+    $homePath . "/rooms/delete" => ["RoomController", "delete"],
     // bookings
-    "fake_hotel/bookings/index" => ["BookingController", "index"],
-    "fake_hotel/bookings/insert" => ["BookingController", "insert"],
-    "fake_hotel/bookings/update" => ["BookingController", "update"],
-    "fake_hotel/bookings/delete" => ["BookingController", "delete"],
+    $homePath . "/bookings/index" => ["BookingController", "index"],
+    $homePath . "/bookings/insert" => ["BookingController", "insert"],
+    $homePath . "/bookings/update" => ["BookingController", "update"],
+    $homePath . "/bookings/delete" => ["BookingController", "delete"],
     // room types
-    "fake_hotel/roomTypes/index" => ["RoomTypeController", "index"],
-    "fake_hotel/roomTypes/insert" => ["RoomTypeController", "insert"],
-    "fake_hotel/roomTypes/update" => ["RoomTypeController", "update"],
-    "fake_hotel/roomTypes/delete" => ["RoomTypeController", "delete"],
+    $homePath . "/roomTypes/index" => ["RoomTypeController", "index"],
+    $homePath . "/roomTypes/insert" => ["RoomTypeController", "insert"],
+    $homePath . "/roomTypes/update" => ["RoomTypeController", "update"],
+    $homePath . "/roomTypes/delete" => ["RoomTypeController", "delete"],
     //other
-    "fake_hotel" => ["AuthController", "homePage"],
-    "fake_hotel/login" => ["AuthController", "login"],
-    "fake_hotel/logout" => ["AuthController", "logout"],
+    $homePath . "" => ["AuthController", "homePage"],
+    $homePath . "/login" => ["AuthController", "login"],
+    $homePath . "/logout" => ["AuthController", "logout"],
 ];
 
 class Router {
