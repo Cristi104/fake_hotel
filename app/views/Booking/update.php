@@ -10,9 +10,17 @@
 <h1>Booking</h1>
 <form method="post">
     <label></label>room_number<br>
-    <input type="text" id="room_number" name="room_number" value="<?= $booking["room_number"] ?>"><br>
+    <select id="room_number" name="room_number">
+        <?php foreach($rooms as $room) : ?>
+            <option <?php echo ($room["room_number"] == $booking['room_number'])? "selected" : ""; ?>><?= $room['room_number'] ?></option>
+        <?php endforeach; ?>
+    </select>
     <label>user_id</label><br>
-    <input type="text" id="user_id" name="user_id" value="<?= $booking["user_id"] ?>"><br>
+    <select id="user_id" name="user_id">
+        <?php foreach($users as $user) : ?>
+            <option <?php echo ($user["user_id"] == $booking['user_id'])? "selected" : ""; ?>><?= $user['user_id'] ?></option>
+        <?php endforeach; ?>
+    </select>
     <label>start_date</label><br>
     <input type="text" id="start_date" name="start_date" value="<?= $booking["start_date"] ?>"><br>
     <label>end_date</label><br>

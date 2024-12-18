@@ -10,7 +10,11 @@
 <h1>Room</h1>
 <form method="post">
     <label></label>Type<br>
-    <input type="text" id="room_type" name="room_type" value="<?= $room["room_type"] ?>"><br>
+    <select id="room_type" name="room_type">
+        <?php foreach ($roomTypes as $type) : ?>
+            <option <?php echo ($room["room_type"] == $type['type_id'])? "selected" : ""; ?>><?= $type['type_id']?></option>
+        <?php endforeach; ?>
+    </select>
     <input type="submit" id="Update" name="Update" value="Update"><br>
 </form>
 </body>

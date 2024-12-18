@@ -1,5 +1,6 @@
 <?php
 require_once "app/models/Room.php";
+require_once "app/models/RoomType.php";
 
 class RoomController{
     public static function index(){
@@ -8,6 +9,7 @@ class RoomController{
     }
 
     public static function insert(){
+        $roomTypes = RoomType::getAllTypes();
         if(array_key_exists('Add', $_POST)){
             $room = array("room_number"=>$_POST["room_number"]);
             $room["room_type"] = $_POST["room_type"];
@@ -23,6 +25,7 @@ class RoomController{
     public static function update(){
         $number = $_GET['number'];
         $room = Room::getRoom($number);
+        $roomTypes = RoomType::getAllTypes();
         if(array_key_exists('Update', $_POST)){
             $room["room_type"] = $_POST["room_type"];
             Room::updateRoom($room);
