@@ -11,14 +11,19 @@ class AuthController{
             require_once "app/views/auth/login.php";
             return;
         }
-        $user = User::getUserLogin($_GET["email"], $_GET["password"]);
+        $user = User::getUserLogin($_GET["email"]);
         if(empty($user)){
             $_SESSION["login_error"] = "Incorect email or password";
             require_once "app/views/auth/login.php";
             return;
         }else{
-            $_SESSION["user"] = $user;
-            header("Location: /fake_hotel");
+            if(password_verify($_GET["password"], $user['password'])){
+                $_SESSION["user"] = $user;
+                header("Location: /fake_hotel");
+                return;
+            }
+            $_SESSION["login_error"] = "Incorect email or password";
+            require_once "app/views/auth/login.php";
             return;
         }
     }

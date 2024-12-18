@@ -18,11 +18,12 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getUserLogin($email, $password) {
+    public static function getUserLogin($email) {
         global $pdo;
 
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(":email" => $email,));
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

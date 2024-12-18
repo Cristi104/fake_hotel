@@ -15,7 +15,7 @@ class UserController{
             $user["last_name"] = $_POST["last_name"];
             $user["phone"] = $_POST["phone"];
             $user["email"] = $_POST["email"];
-            $user["password"] = $_POST["password"];
+            $user["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
             User::insertUser($user);
             header("Location: index");
             exit();
@@ -33,7 +33,7 @@ class UserController{
             $user["last_name"] = $_POST["last_name"];
             $user["phone"] = $_POST["phone"];
             $user["email"] = $_POST["email"];
-            $user["password"] = $_POST["password"];
+            $user["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
             User::updateUser($user);
             header("Location: index");
             exit();
