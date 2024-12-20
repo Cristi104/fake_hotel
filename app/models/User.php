@@ -66,6 +66,26 @@ class User {
             ":user_id" => $user["user_id"],
         ));
     }
+
+    public static function getPermission($user_id, $permission) {
+        global $pdo;
+
+        $sql = "SELECT COALESCE(rol.strength, 'NONE') AS \"permission\"
+                FROM users usr
+                LEFT JOIN role_permissions rol ON usr.user_type = rol.user_type_id
+                LEFT JOIN permissions per ON rol.permission_id = per.permission_id
+                WHERE per.name = :permission
+                AND usr.user_id = :user_id;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ":user_id" => $user_id,
+            ":permission" => $permission,
+        ));
+        if($stmt->rowCount() == 0){
+            return "NONE";
+        }
+        return $stmt->fetch(PDO::FETCH_ASSOC)["permission"];
+    }
 }
 
 ?>
