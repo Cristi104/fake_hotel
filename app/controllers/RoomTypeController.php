@@ -33,8 +33,8 @@ class RoomTypeController{
         }
         if(array_key_exists('Add', $_POST)){
             $type = array("type_id"=>-1);
-            $type["max_guests"] = $_POST["max_guests"];
-            $type["price"] = $_POST["price"];
+            $type["max_guests"] = htmlentities($_POST["max_guests"]);
+            $type["price"] = htmlentities($_POST["price"]);
             RoomType::insertType($type);
             header("Location: index");
             exit();
@@ -55,11 +55,11 @@ class RoomTypeController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         $type = RoomType::getType($id);
         if(array_key_exists('Update', $_POST)){
-            $type["max_guests"] = $_POST["max_guests"];
-            $type["price"] = $_POST["price"];
+            $type["max_guests"] = htmlentities($_POST["max_guests"]);
+            $type["price"] = htmlentities($_POST["price"]);
             RoomType::updateType($type);
             header("Location: index");
             exit();
@@ -80,7 +80,7 @@ class RoomTypeController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         $type = RoomType::getType($id);
         RoomType::deleteType($type);
         header("Location: index");

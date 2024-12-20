@@ -36,12 +36,12 @@ class UserController{
         }
         if(array_key_exists('Add', $_POST)){
             $user = array("user_id"=>-1);
-            $user["user_type"] = $_POST["user_type"];
-            $user["first_name"] = $_POST["first_name"];
-            $user["last_name"] = $_POST["last_name"];
-            $user["phone"] = $_POST["phone"];
-            $user["email"] = $_POST["email"];
-            $user["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            $user["user_type"] = htmlentities($_POST["user_type"]);
+            $user["first_name"] = htmlentities($_POST["first_name"]);
+            $user["last_name"] = htmlentities($_POST["last_name"]);
+            $user["phone"] = htmlentities($_POST["phone"]);
+            $user["email"] = htmlentities($_POST["email"]);
+            $user["password"] = password_hash(htmlentities($_POST["password"]), PASSWORD_DEFAULT);
             User::insertUser($user);
             header("Location: index");
             exit();
@@ -62,7 +62,7 @@ class UserController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         if($permission == "SELF" && $_SESSION["user"]["user_id"] != $id){
             $_SESSION["error"] = "permission denied";
             require_once "app/views/404.php";
@@ -70,13 +70,13 @@ class UserController{
         }
         $user = User::getUser($id);
         if(array_key_exists('Update', $_POST)){
-            $user["user_type"] = $_POST["user_type"];
-            $user["first_name"] = $_POST["first_name"];
-            $user["last_name"] = $_POST["last_name"];
-            $user["phone"] = $_POST["phone"];
-            $user["email"] = $_POST["email"];
-            if($_POST["password"] != $user["password"] && $_POST["password"] != "")
-                $user["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            $user["user_type"] = htmlentities($_POST["user_type"]);
+            $user["first_name"] = htmlentities($_POST["first_name"]);
+            $user["last_name"] = htmlentities($_POST["last_name"]);
+            $user["phone"] = htmlentities($_POST["phone"]);
+            $user["email"] = htmlentities($_POST["email"]);
+            if(htmlentities($_POST["password"]) != $user["password"] && htmlentities($_POST["password"]) != "")
+                $user["password"] = password_hash(htmlentities($_POST["password"]), PASSWORD_DEFAULT);
             User::updateUser($user);
             header("Location: index");
             exit();
@@ -97,7 +97,7 @@ class UserController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         $user = User::getUser($id);
         if($permission == "SELF" && $_SESSION["user"]["user_id"] != $user["user_id"]){
             $_SESSION["error"] = "permission denied";

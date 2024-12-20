@@ -45,15 +45,15 @@ class BookingController{
         $rooms = Room::getAllRooms();
         if(array_key_exists('Add', $_POST)){
             $booking = array("booking_id"=>-1);
-            $booking["room_number"] = $_POST["room_number"];
+            $booking["room_number"] = htmlentities($_POST["room_number"]);
             if($permission == "SELF"){
                 $booking["user_id"] = $_SESSION["user"]["user_id"];
             }
             if($permission == "ALL"){
-                $booking["user_id"] = $_POST["user_id"];
+                $booking["user_id"] = htmlentities($_POST["user_id"]);
             }
-            $booking["start_date"] = $_POST["start_date"];
-            $booking["end_date"] = $_POST["end_date"];
+            $booking["start_date"] = htmlentities($_POST["start_date"]);
+            $booking["end_date"] = htmlentities($_POST["end_date"]);
             Booking::insertBooking($booking);
             header("Location: index");
             exit();
@@ -74,7 +74,7 @@ class BookingController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         $booking = Booking::getBooking($id);
         if($permission == "SELF" && $_SESSION["user"]["user_id"] != $booking["user_id"]){
             $_SESSION["error"] = "permission denied";
@@ -84,11 +84,11 @@ class BookingController{
         $users = User::getAllUsers();
         $rooms = Room::getAllRooms();
         if(array_key_exists('Update', $_POST)){
-            $booking["room_number"] = $_POST["room_number"];
+            $booking["room_number"] = htmlentities($_POST["room_number"]);
             if($permission == "ALL")
-                $booking["user_id"] = $_POST["user_id"];
-            $booking["start_date"] = $_POST["start_date"];
-            $booking["end_date"] = $_POST["end_date"];
+                $booking["user_id"] = htmlentities($_POST["user_id"]);
+            $booking["start_date"] = htmlentities($_POST["start_date"]);
+            $booking["end_date"] = htmlentities($_POST["end_date"]);
             Booking::updateBooking($booking);
             header("Location: index");
             exit();
@@ -109,7 +109,7 @@ class BookingController{
             require_once "app/views/404.php";
             return;
         }
-        $id = $_GET['id'];
+        $id = htmlentities($_GET['id']);
         $booking = Booking::getBooking($id);
         if($permission == "SELF" && $_SESSION["user"]["user_id"] != $booking["user_id"]){
             $_SESSION["error"] = "permission denied";

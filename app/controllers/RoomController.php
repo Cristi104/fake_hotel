@@ -34,8 +34,8 @@ class RoomController{
         }
         $roomTypes = RoomType::getAllTypes();
         if(array_key_exists('Add', $_POST)){
-            $room = array("room_number"=>$_POST["room_number"]);
-            $room["room_type"] = $_POST["room_type"];
+            $room = array("room_number"=> htmlentities($_POST["room_number"]));
+            $room["room_type"] = htmlentities($_POST["room_type"]);
             print_r($room);
             Room::insertRoom($room);
             header("Location: index");
@@ -57,11 +57,11 @@ class RoomController{
             require_once "app/views/404.php";
             return;
         }
-        $number = $_GET['number'];
+        $number = htmlentities($_GET['number']);
         $room = Room::getRoom($number);
         $roomTypes = RoomType::getAllTypes();
         if(array_key_exists('Update', $_POST)){
-            $room["room_type"] = $_POST["room_type"];
+            $room["room_type"] = htmlentities($_POST["room_type"]);
             Room::updateRoom($room);
             header("Location: index");
             exit();
@@ -82,7 +82,7 @@ class RoomController{
             require_once "app/views/404.php";
             return;
         }
-        $number = $_GET['number'];
+        $number = htmlentities($_GET['number']);
         $room = Room::getRoom($number);
         Room::deleteRoom($room);
         header("Location: index");

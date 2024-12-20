@@ -13,13 +13,13 @@ class AuthController{
             require_once "app/views/auth/login.php";
             return;
         }
-        $user = User::getUserLogin($_GET["email"]);
+        $user = User::getUserLogin(htmlentities($_GET["email"]));
         if(empty($user)){
             $_SESSION["login_error"] = "Incorect email or password";
             require_once "app/views/auth/login.php";
             return;
         }else{
-            if(password_verify($_GET["password"], $user['password'])){
+            if(password_verify(htmlentities($_GET["password"]), $user['password'])){
                 $_SESSION["user"] = $user;
                 header("Location: /". $homePath);
                 return;
