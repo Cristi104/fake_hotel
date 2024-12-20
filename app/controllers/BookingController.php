@@ -21,9 +21,10 @@ class BookingController{
         }
         if($permission == "SELF"){
             $bookings = Booking::getAllBookings();
-            // foreach ($bookings as $key => $booking) :
-            //     unset($bookings[$key]);
-            // endforeach;
+            foreach ($bookings as $key => $booking) :
+                if($booking["user_id"] != $_SESSION["user"]["user_id"])
+                    unset($bookings[$key]);
+            endforeach;
         }
         require_once "app/views/Booking/index.php";
     }
@@ -34,8 +35,8 @@ class BookingController{
             require_once "app/views/404.php";
             return;
         }
-        $permission = User::getPermission($_SESSION["user"]["user_id"], "insert_booking");
-        if($permission != "ALL"){
+        $permission = User::getPermission($_SESSION["user"]["user_id"], "create_booking");
+        if($permission == "NONE"){
             $_SESSION["error"] = "permission denied";
             require_once "app/views/404.php";
             return;
@@ -45,7 +46,12 @@ class BookingController{
         if(array_key_exists('Add', $_POST)){
             $booking = array("booking_id"=>-1);
             $booking["room_number"] = $_POST["room_number"];
-            $booking["user_id"] = $_POST["user_id"];
+            if($permission == "SELF"){
+                $booking["user_id"] = $_SESSION["user"]["user_id"];
+            }
+            if($permission == "ALL"){
+                $booking["user_id"] = $_POST["user_id"];
+            }
             $booking["start_date"] = $_POST["start_date"];
             $booking["end_date"] = $_POST["end_date"];
             Booking::insertBooking($booking);
