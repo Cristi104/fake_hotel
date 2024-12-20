@@ -23,7 +23,7 @@
     <label>email</label><br>
     <input type="text" id="email" name="email"><br>
     <label>password</label><br>
-    <input type="text" id="password" name="password"><br>
+    <input type="password" id="password" name="password"><br>
     <input type="submit" id="Add" name="Add" value="Add"><br>
 </form>
 </body>

@@ -19,7 +19,7 @@
     <label>Email</label><br>
     <input type="text" id="email" name="email"><br>
     <label>Passwprd</label><br>
-    <input type="text" id="password" name="password"><br>
+    <input type="password" id="password" name="password"><br>
     <input type="submit" id="login" name="login" value="login"><br>
 </form>
 </body>

@@ -23,7 +23,7 @@
     <label>email</label><br>
     <input type="text" id="email" name="email" value="<?= $user["email"] ?>"><br>
     <label>password</label><br>
-    <input type="text" id="password" name="password" value="<?= $user["password"] ?>"><br>
+    <input type="password" id="password" name="password"><br>
     <input type="submit" id="Update" name="Update" value="Update"><br>
 </form>
 </body>
