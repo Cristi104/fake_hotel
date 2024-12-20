@@ -11,8 +11,8 @@
 <form method="post">
     <label></label>User type<br>
     <select id="user_type" name="user_type" ><br>
-        <option value="1">Admin</option>
-        <option value="2">User</option>
+        <option value="1" <?= ($user["user_type"] == 1) ? "selected" : "" ?>>Admin</option>
+        <option value="2" <?= ($user["user_type"] == 2) ? "selected" : "" ?>>User</option>
     </select>
     <label>First name</label><br>
     <input type="text" id="first_name" name="first_name" value="<?= $user["first_name"] ?>"><br>
