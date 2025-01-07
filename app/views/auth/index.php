@@ -18,7 +18,7 @@
         echo "<a href=\"logout\" class=\"button\">Logout</a>";
     } else {
         echo "<a href=\"login\" class=\"button\">Login</a>";
-        echo "<p>Please login.(email: test@example.com password: parola)</p>";
+        echo "<a href=\"register\" class=\"button\">Register</a>";
     };
 ?>  
 </body>
