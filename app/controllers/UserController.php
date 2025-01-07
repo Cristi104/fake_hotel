@@ -1,5 +1,6 @@
 <?php
 require_once "app/models/User.php";
+require_once "app/models/CSVConverter.php";
 
 class UserController{
     public static function index(){
@@ -107,6 +108,27 @@ class UserController{
         User::deleteUser($user);
         header("Location: index");
         exit();
+    }
+
+    public static function export(){
+        if(!isset($_SESSION["user"])){
+            $_SESSION["error"] = "permission denied";
+            require_once "app/views/404.php";
+            return;
+        }
+        $permission = User::getPermission($_SESSION["user"]["user_id"], "read_user");
+        if($permission == "ALL"){
+            $users = User::getAllUsers();
+        }
+        if($permission == "SELF"){
+            $users = User::getAllUsers();
+            foreach ($users as $key => $user) :
+                if($user["user_id"] != $_SESSION["user"]["user_id"])
+                    unset($users[$key]);
+            endforeach;
+        }
+        CSVConverter::downloadCSV($users);
+        // header("Location: index");
     }
 }
 ?>
