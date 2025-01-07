@@ -26,6 +26,8 @@ $routes = [
     $homePath . "" => ["AuthController", "homePage"],
     $homePath . "/login" => ["AuthController", "login"],
     $homePath . "/logout" => ["AuthController", "logout"],
+    $homePath . "/register" => ["AuthController", "register"],
+    $homePath . "/confirmRegistration" => ["AuthController", "confirmRegistration"],
 ];
 
 class Router {

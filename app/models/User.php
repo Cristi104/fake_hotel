@@ -86,6 +86,39 @@ class User {
         }
         return $stmt->fetch(PDO::FETCH_ASSOC)["permission"];
     }
+
+    public static function insertTempUser($user) {
+        global $pdo;
+
+        $sql = "INSERT INTO temp_users (user_id, user_type, first_name, last_name, phone, email, password) 
+                VALUES (NULL, :user_type, :first_name, :last_name, :phone, :email, :password)";
+        $pdo->prepare($sql)->execute(array(
+            ":user_type" => $user["user_type"],
+            ":first_name" => $user["first_name"],
+            ":last_name" => $user["last_name"],
+            ":phone" => $user["phone"],
+            ":email" => $user["email"],
+            ":password" => $user["password"],
+        ));
+    }
+
+    public static function deleteTempUser($user) {
+        global $pdo;
+
+        $sql = "DELETE FROM temp_users WHERE user_id = :user_id";
+        $pdo->prepare($sql)->execute(array(
+            ":user_id" => $user["user_id"],
+        ));
+    }
+
+    public static function getTempUser($password) {
+        global $pdo;
+
+        $sql = "SELECT * FROM temp_users WHERE password = :password";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(":password" => $password,));
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
