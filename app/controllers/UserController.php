@@ -130,5 +130,29 @@ class UserController{
         CSVConverter::downloadCSV($users);
         // header("Location: index");
     }
+
+    public static function import(){
+        if(!isset($_SESSION["user"])){
+            $_SESSION["error"] = "permission denied";
+            require_once "app/views/404.php";
+            return;
+        }
+        $permission = User::getPermission($_SESSION["user"]["user_id"], "create_user");
+        if($permission != "ALL"){
+            $_SESSION["error"] = "permission denied";
+            require_once "app/views/404.php";
+            return;
+        }
+        if(array_key_exists('Import', $_POST)){
+            $CSVFile = $_FILES['file']['tmp_name'];
+            print_r($_FILES);
+            $users = CSVConverter::CSVToArray($CSVFile);
+            foreach ($users as $user) :
+                User::insertUser($user);
+            endforeach;
+            header("Location: index");
+        }
+        require_once "app/views/User/import.php";
+    }
 }
 ?>

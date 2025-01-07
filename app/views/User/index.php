@@ -11,6 +11,7 @@
 <a href="/fake_hotel" class="button">Home</a>
 <a href="insert" class="button">Add</a>
 <a href="export" class="button">export</a>
+<a href="import" class="button">import</a>
 <table>
     <tr>
         <th>ID</th>

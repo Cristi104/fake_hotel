@@ -8,6 +8,7 @@ $routes = [
     $homePath . "/users/update" => ["UserController", "update"],
     $homePath . "/users/delete" => ["UserController", "delete"],
     $homePath . "/users/export" => ["UserController", "export"],
+    $homePath . "/users/import" => ["UserController", "import"],
     // rooms
     $homePath . "/rooms/index" => ["RoomController", "index"],
     $homePath . "/rooms/insert" => ["RoomController", "insert"],

@@ -20,9 +20,16 @@ class CSVConverter{
         fclose($output);
     }
 
-    // public static function CSVToArray(){
-
-    // }
+    public static function CSVToArray($CSVFile){
+        $data = [];
+        $file = fopen($CSVFile, "r");
+        $keys = fgetcsv($file);
+        while(($row = fgetcsv($file)) != false){
+            $data[] = array_combine($file, $row);
+        }
+        fclose($file);
+        return $data;
+    }
 }
 
 ?>
